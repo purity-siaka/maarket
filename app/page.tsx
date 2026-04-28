@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
+
+export const metadata: Metadata = {
+  title: "MAARKET | Authentic Maasai Beadwork",
+  description:
+    "Shop authentic Maasai beadwork handcrafted by artisans and discover the culture, meaning, and stories behind every piece.",
+};
 
 export default function HomePage() {
   const featuredProducts = products.slice(0, 3);
@@ -77,7 +84,7 @@ export default function HomePage() {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover hover:scale-105 transition"
+                    className="object-cover transition hover:scale-105"
                   />
                 </div>
 

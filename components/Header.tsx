@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/components/CartContext";
 
 export default function Header() {
-  const { items } = useCart();
+  const { totalQuantity } = useCart();
 
   return (
     <header className="border-b border-neutral-800 bg-black text-white">
@@ -38,7 +38,7 @@ export default function Header() {
             href="/cart"
             className="rounded-full bg-neutral-900 px-3 py-1 text-yellow-400 hover:bg-neutral-800"
           >
-            Cart ({items.length})
+            Cart ({totalQuantity})
           </Link>
         </div>
       </nav>
