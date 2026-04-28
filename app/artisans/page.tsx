@@ -1,17 +1,24 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { artisans } from "@/data/artisans";
+
+export const metadata: Metadata = {
+  title: "Artisans | MAARKET",
+  description:
+    "Meet the Maasai artisans behind MAARKET beadwork and learn about their craft, stories, and communities.",
+};
 
 export default function ArtisansPage() {
   return (
     <main className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="text-4xl font-bold mb-10">Artisans</h1>
+      <h1 className="mb-10 text-4xl font-bold">Artisans</h1>
 
       <div className="grid gap-6 sm:grid-cols-2">
         {artisans.map((artisan) => (
           <Link
             key={artisan.id}
             href={`/artisans/${artisan.id}`}
-            className="rounded-2xl bg-neutral-900 p-6 hover:ring-2 hover:ring-yellow-400 transition"
+            className="rounded-2xl bg-neutral-900 p-6 transition hover:ring-2 hover:ring-yellow-400"
           >
             <h2 className="text-xl font-semibold">{artisan.name}</h2>
             <p className="mt-1 text-sm text-neutral-400">{artisan.village}</p>

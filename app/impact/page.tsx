@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Impact | MAARKET",
+  description:
+    "Learn how MAARKET supports fair artisan income, cultural preservation, and ethical Maasai beadwork commerce.",
+};
+
 export default function ImpactPage() {
   const impactPoints = [
     {
@@ -49,8 +57,7 @@ export default function ImpactPage() {
         <p className="mt-4 max-w-3xl leading-7 text-neutral-300">
           As MAARKET grows, the platform should continue to prioritize artisan
           dignity, cultural respect, product quality, and fair value. The website
-          must never reduce Maasai beadwork to simple fashion items; it should
-          always honor the hands, history, and identity behind the craft.
+          must always honor the hands, history, and identity behind the craft.
         </p>
       </section>
     </main>

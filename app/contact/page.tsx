@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact | MAARKET",
+  description:
+    "Contact MAARKET for custom beadwork, partnerships, or inquiries about Maasai artisan products.",
+};
+
 export default function ContactPage() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl bg-black px-6 py-16 text-white">

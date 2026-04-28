@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Culture | MAARKET",
+  description:
+    "Learn the meanings behind Maasai bead colors, patterns, and traditions and how they express identity and culture.",
+};
+
 const beadColors = [
   {
     color: "Red",
@@ -34,17 +42,13 @@ export default function CulturePage() {
 
       <p className="mt-6 max-w-3xl leading-7 text-neutral-300">
         Maasai beadwork is more than decoration. Colors, patterns, and forms
-        can communicate identity, beauty, strength, ceremony, age, community,
-        and belonging. MAARKET presents beadwork with respect for the culture
-        behind each handmade piece.
+        communicate identity, beauty, strength, ceremony, community, and
+        belonging.
       </p>
 
       <section className="mt-14 grid gap-6 sm:grid-cols-2">
         {beadColors.map((item) => (
-          <div
-            key={item.color}
-            className="rounded-2xl bg-neutral-900 p-6"
-          >
+          <div key={item.color} className="rounded-2xl bg-neutral-900 p-6">
             <div className="flex items-center gap-4">
               <span
                 className={`h-10 w-10 rounded-full border border-neutral-700 ${item.className}`}
@@ -57,12 +61,11 @@ export default function CulturePage() {
         ))}
       </section>
 
-      <section className="mt-16 rounded-3xl bg-neutral-900 p-8">
+      <section className="mt-16 rounded-3xl border border-neutral-800 bg-neutral-950 p-8">
         <h2 className="text-2xl font-bold">Respectful storytelling</h2>
         <p className="mt-4 max-w-3xl leading-7 text-neutral-300">
-          MAARKET is built to highlight the people, meaning, and craft behind
-          Maasai beadwork. Each product should be presented with context, not as
-          a generic fashion item.
+          MAARKET highlights the people, meaning, and craft behind Maasai
+          beadwork, ensuring every piece is presented with cultural context.
         </p>
       </section>
     </main>
