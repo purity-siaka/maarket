@@ -10,11 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featuredProducts = products.slice(0, 3);
+  const featuredProducts = products.slice(0, 4);
 
   return (
     <main>
-      {/* HERO */}
       <section className="mx-auto grid min-h-[80vh] max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2">
         <div>
           <p className="text-sm uppercase tracking-[0.3em] text-yellow-400">
@@ -60,9 +59,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-8 flex items-end justify-between gap-4">
+        <div className="mb-8 flex items-center justify-between gap-4">
           <div>
             <p className="text-sm uppercase tracking-wide text-yellow-400">
               Featured pieces
@@ -70,15 +68,18 @@ export default function HomePage() {
             <h2 className="mt-2 text-3xl font-bold">Handmade beadwork</h2>
           </div>
 
-          <Link href="/shop" className="text-sm text-yellow-400">
-            View all →
+          <Link
+            href="/shop"
+            className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-semibold text-black hover:bg-yellow-300"
+          >
+            View all
           </Link>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           {featuredProducts.map((product) => (
-            <Link key={product.id} href={`/shop/${product.id}`}>
-              <div className="overflow-hidden rounded-2xl bg-neutral-900">
+            <div key={product.id} className="overflow-hidden rounded-2xl bg-neutral-900">
+              <Link href={`/shop/${product.id}`}>
                 <div className="relative h-56">
                   <Image
                     src={product.image}
@@ -87,17 +88,18 @@ export default function HomePage() {
                     className="object-cover transition hover:scale-105"
                   />
                 </div>
+              </Link>
 
-                <div className="p-4">
+              <div className="p-4">
+                <Link href={`/shop/${product.id}`}>
                   <h3 className="font-semibold hover:text-yellow-400">
                     {product.name}
                   </h3>
-                  <p className="mt-1 text-sm text-neutral-400">
-                    ${product.price}
-                  </p>
-                </div>
+                </Link>
+
+                <p className="mt-1 text-sm text-neutral-400">${product.price}</p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>

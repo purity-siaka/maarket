@@ -69,4 +69,39 @@ export const products: Product[] = [
     artisanId: "olpiron-lengai",
     image: "/images/products/warrior-anklet.png",
   },
+
+  {
+    id: "necklace-maasai-royal-collar",
+    name: "Maasai Royal Collar Necklace",
+    category: "Necklaces",
+    meaning: "Symbol of unity and pride",
+    story: "A ceremonial piece worn during important Maasai celebrations.",
+    price: 150,
+    artisanId: "olpiron-lengai",
+    image: "/images/products/necklace-maasai-royal-collar.png",
+  },
+
+  {
+    id: "bracelet-warrior-pattern",
+    name: "Warrior Pattern Bracelet",
+    category: "Bracelets",
+    meaning: "Courage and strength",
+    story: "Inspired by Maasai warrior symbolism and tradition.",
+    price: 40,
+    artisanId: "olpiron-lengai",
+    image: "/images/products/bracelet-warrior-pattern.png",
+  },
+
+  {
+    id: "earrings-naserian-classic",
+    name: "Naserian Classic Earrings",
+    category: "Earrings",
+    meaning: "Peace and elegance",
+    story: "Lightweight beadwork representing beauty and calmness.",
+    price: 35,
+    artisanId: "naserian-enkai",
+    image: "/images/products/earrings-naserian-classic.png",
+  },
+
+  
 ];
