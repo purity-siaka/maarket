@@ -1,16 +1,63 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/CartContext";
 
 export default function CartPage() {
-  const {
-    items,
-    increaseItem,
-    decreaseItem,
-    removeItem,
-    totalPrice,
-  } = useCart();
+  const { items, increaseItem, decreaseItem, removeItem, totalPrice } =
+    useCart();
+
+  const [phone, setPhone] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("");
+  const [isPaying, setIsPaying] = useState(false);
+
+  async function handleMpesaPayment() {
+    setPaymentStatus("");
+
+    if (!phone.trim()) {
+      setPaymentStatus("Please enter your M-Pesa phone number.");
+      return;
+    }
+
+    try {
+      setIsPaying(true);
+
+      const response = await fetch("/api/mpesa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phone,
+          amount: totalPrice,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setPaymentStatus(data.error || "Payment request failed.");
+        return;
+      }
+
+      if (data.ResponseCode === "0") {
+        setPaymentStatus(
+          "STK Push sent. Check your phone and enter your M-Pesa PIN."
+        );
+      } else {
+        setPaymentStatus(
+          data.errorMessage ||
+            data.ResponseDescription ||
+            "M-Pesa did not accept the request."
+        );
+      }
+    } catch {
+      setPaymentStatus("Something went wrong. Please try again.");
+    } finally {
+      setIsPaying(false);
+    }
+  }
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
@@ -36,9 +83,7 @@ export default function CartPage() {
             >
               <div>
                 <h2 className="font-semibold">{item.name}</h2>
-                <p className="text-sm text-neutral-400">
-                  ${item.price} each
-                </p>
+                <p className="text-sm text-neutral-400">${item.price} each</p>
                 <p className="mt-1 text-sm text-neutral-300">
                   Subtotal: ${item.price * item.quantity}
                 </p>
@@ -53,9 +98,7 @@ export default function CartPage() {
                     −
                   </button>
 
-                  <span className="min-w-8 text-center">
-                    {item.quantity}
-                  </span>
+                  <span className="min-w-8 text-center">{item.quantity}</span>
 
                   <button
                     onClick={() => increaseItem(item.id)}
@@ -78,9 +121,30 @@ export default function CartPage() {
           <div className="border-t border-neutral-800 pt-6">
             <p className="text-2xl font-bold">Total: ${totalPrice}</p>
 
-            <button className="mt-6 rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black hover:bg-yellow-300">
-              Proceed to Checkout
-            </button>
+            <div className="mt-6 rounded-2xl bg-neutral-900 p-6">
+              <label className="block text-sm font-medium text-neutral-300">
+                M-Pesa phone number
+              </label>
+
+              <input
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+                placeholder="07XXXXXXXX"
+                className="mt-2 w-full rounded-xl border border-neutral-700 bg-black px-4 py-3 text-white outline-none focus:border-yellow-400"
+              />
+
+              <button
+                onClick={handleMpesaPayment}
+                disabled={isPaying}
+                className="mt-4 rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isPaying ? "Sending STK Push..." : "Pay with M-Pesa"}
+              </button>
+
+              {paymentStatus && (
+                <p className="mt-4 text-sm text-neutral-300">{paymentStatus}</p>
+              )}
+            </div>
           </div>
         </div>
       )}

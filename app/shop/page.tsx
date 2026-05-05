@@ -1,21 +1,40 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
-
-export const metadata: Metadata = {
-  title: "Shop | MAARKET",
-  description:
-    "Explore authentic Maasai beadwork including necklaces, bracelets, earrings, and handmade cultural pieces.",
-};
+import ShopFilters from "@/components/ShopFilters";
 
 export default function ShopPage() {
+  const categories = [
+    "All",
+    ...Array.from(new Set(products.map((product) => product.category))),
+  ];
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProducts =
+    activeCategory === "All"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
+
   return (
     <main className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="mb-10 text-4xl font-bold">Shop</h1>
+      <h1 className="mb-4 text-4xl font-bold">Shop</h1>
+
+      <p className="mb-10 max-w-2xl text-neutral-300">
+        Browse authentic Maasai beadwork by category.
+      </p>
+
+      <ShopFilters
+        categories={categories}
+        activeCategory={activeCategory}
+        onChange={setActiveCategory}
+      />
 
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div
             key={product.id}
             className="overflow-hidden rounded-2xl bg-neutral-900 shadow-lg"
@@ -47,6 +66,12 @@ export default function ShopPage() {
           </div>
         ))}
       </div>
+
+      {filteredProducts.length === 0 && (
+        <p className="mt-10 text-neutral-400">
+          No products found in this category.
+        </p>
+      )}
     </main>
   );
 }

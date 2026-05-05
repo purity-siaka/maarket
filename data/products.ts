@@ -1,38 +1,72 @@
-export const products = [
+export type Product = {
+  id: string;
+  name: string;
+  category: string;
+  meaning: string;
+  story: string;
+  price: number;
+  artisanId: string;
+  image: string;
+};
+
+export const products: Product[] = [
   {
     id: "enkarewa-necklace",
     name: "Enkarewa Beaded Necklace",
     category: "Necklaces",
-    price: 120,
-    meaning: "Worn during ceremonies celebrating unity and strength.",
+    meaning: "Unity and strength",
     story:
-      "The Enkarewa necklace is traditionally worn during major Maasai ceremonies. Its layered beadwork represents unity within the community and strength passed down through generations.",
+      "Traditionally worn during ceremonies, symbolizing unity within the community.",
+    price: 120,
+    artisanId: "olpiron-lengai",
     image: "/images/products/enkarewa-necklace.jpg",
-    colors: ["red", "white", "blue"],
-    artisanId: "naserian-nkote",
   },
+
   {
     id: "olpiron-bracelet",
     name: "Olpiron Warrior Bracelet",
     category: "Bracelets",
-    price: 45,
-    meaning: "Symbol of courage and protection.",
+    meaning: "Courage and bravery",
     story:
-      "Inspired by warrior traditions, the Olpiron bracelet is worn as a symbol of bravery, readiness, and protection of the community.",
-    image: "/images/products/olpiron-bracelet.jpg",
-    colors: ["black", "blue"],
+      "Worn by warriors, representing strength and protection in Maasai culture.",
+    price: 45,
     artisanId: "olpiron-lengai",
+    image: "/images/products/olpiron-bracelet.jpg",
   },
+
   {
     id: "naserian-earrings",
     name: "Naserian Beaded Earrings",
     category: "Earrings",
-    price: 60,
-    meaning: "Represents beauty, grace, and womanhood.",
+    meaning: "Peace and elegance",
     story:
-      "These earrings celebrate Maasai womanhood and are often worn during important life moments and ceremonies.",
+      "Lightweight beadwork representing beauty and calmness among Maasai women.",
+    price: 35,
+    artisanId: "naserian-enkai",
     image: "/images/products/naserian-earrings.jpg",
-    colors: ["white", "red"],
-    artisanId: "naserian-nkote",
+  },
+
+  {
+    id: "enkai-choker",
+    name: "Enkai Choker Necklace",
+    category: "Necklaces",
+    meaning: "Spiritual connection",
+    story:
+      "Symbolizes connection to Enkai (God) and spiritual identity.",
+    price: 95,
+    artisanId: "naserian-enkai",
+    image: "/images/products/enkai-choker.png",
+  },
+
+  {
+    id: "warrior-anklet",
+    name: "Warrior Beaded Anklet",
+    category: "Anklets",
+    meaning: "Movement and energy",
+    story:
+      "Worn during dances, symbolizing rhythm, life, and vitality.",
+    price: 30,
+    artisanId: "olpiron-lengai",
+    image: "/images/products/warrior-anklet.png",
   },
 ];
