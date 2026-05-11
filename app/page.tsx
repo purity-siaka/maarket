@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
+import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "MAARKET | Authentic Maasai Beadwork",
@@ -9,13 +10,15 @@ export const metadata: Metadata = {
     "Shop authentic Maasai beadwork handcrafted by artisans and discover the culture, meaning, and stories behind every piece.",
 };
 
+const heroImage = "/images/home/hero.jpg";
+
 export default function HomePage() {
   const featuredProducts = products.slice(0, 4);
 
   return (
     <main>
       <section className="mx-auto grid min-h-[80vh] max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2">
-        <div>
+        <FadeIn>
           <p className="text-sm uppercase tracking-[0.3em] text-yellow-400">
             Maasai beadwork marketplace
           </p>
@@ -44,62 +47,72 @@ export default function HomePage() {
               Learn the Culture
             </Link>
           </div>
-        </div>
+        </FadeIn>
 
-        <div className="overflow-hidden rounded-3xl bg-neutral-900">
-          <div className="relative h-[420px]">
-            <Image
-              src={featuredProducts[0].image}
-              alt={featuredProducts[0].name}
-              fill
-              priority
-              className="object-cover"
-            />
+        <FadeIn delay={0.15}>
+          <div className="overflow-hidden rounded-3xl bg-neutral-900">
+            <div className="relative h-[420px]">
+              <Image
+                src={heroImage}
+                alt="Maasai beadwork showcase"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-8 flex items-center justify-between gap-4">
-          <div>
-            <p className="text-sm uppercase tracking-wide text-yellow-400">
-              Featured pieces
-            </p>
-            <h2 className="mt-2 text-3xl font-bold">Handmade beadwork</h2>
-          </div>
+        <FadeIn>
+          <div className="mb-8 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm uppercase tracking-wide text-yellow-400">
+                Featured pieces
+              </p>
+              <h2 className="mt-2 text-3xl font-bold">Handmade beadwork</h2>
+            </div>
 
-          <Link
-            href="/shop"
-            className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-semibold text-black hover:bg-yellow-300"
-          >
-            View all
-          </Link>
-        </div>
+            <Link
+              href="/shop"
+              className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-semibold text-black hover:bg-yellow-300"
+            >
+              View all
+            </Link>
+          </div>
+        </FadeIn>
 
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-          {featuredProducts.map((product) => (
-            <div key={product.id} className="overflow-hidden rounded-2xl bg-neutral-900">
-              <Link href={`/shop/${product.id}`}>
-                <div className="relative h-56">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover transition hover:scale-105"
-                  />
-                </div>
-              </Link>
-
-              <div className="p-4">
+          {featuredProducts.map((product, index) => (
+            <FadeIn key={product.id} delay={index * 0.08}>
+              <div className="overflow-hidden rounded-2xl bg-neutral-900">
                 <Link href={`/shop/${product.id}`}>
-                  <h3 className="font-semibold hover:text-yellow-400">
-                    {product.name}
-                  </h3>
+                  <div className="relative h-56">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
+                      className="object-cover transition hover:scale-105"
+                    />
+                  </div>
                 </Link>
 
-                <p className="mt-1 text-sm text-neutral-400">${product.price}</p>
+                <div className="p-4">
+                  <Link href={`/shop/${product.id}`}>
+                    <h3 className="font-semibold hover:text-yellow-400">
+                      {product.name}
+                    </h3>
+                  </Link>
+
+                  <p className="mt-1 text-sm text-neutral-400">
+                    ${product.price}
+                  </p>
+                </div>
               </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </section>

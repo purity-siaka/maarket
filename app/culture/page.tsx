@@ -58,8 +58,7 @@ export default function CulturePage() {
 
             <p className="mt-4 text-neutral-300">{item.meaning}</p>
           </div>
-        ))}
-      </section>
+        ))}      </section>
 
       <section className="mt-16 rounded-3xl border border-neutral-800 bg-neutral-950 p-8">
         <h2 className="text-2xl font-bold">Respectful storytelling</h2>

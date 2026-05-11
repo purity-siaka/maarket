@@ -11,17 +11,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-black text-white">
+      <body className="bg-black text-white antialiased">
         <CartProvider>
           <Header />
-          <div className="min-h-screen bg-black text-white">
-            {children}
-          </div>
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </CartProvider>
       </body>
