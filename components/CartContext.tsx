@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+import { toast } from "sonner";
 
 type CartItem = {
   id: string;
@@ -17,12 +18,24 @@ type CartContextType = {
   removeItem: (id: string) => void;
   totalQuantity: number;
   totalPrice: number;
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  function openCart() {
+    setIsCartOpen(true);
+  }
+
+  function closeCart() {
+    setIsCartOpen(false);
+  }
 
   function addItem(item: Omit<CartItem, "quantity">) {
     setItems((prev) => {
@@ -38,6 +51,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
       return [...prev, { ...item, quantity: 1 }];
     });
+    
+    toast.success(`${item.name} added to cart`);
+    openCart();
   }
 
   function increaseItem(id: string) {
@@ -79,6 +95,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         removeItem,
         totalQuantity,
         totalPrice,
+        isCartOpen,
+        openCart,
+        closeCart,
       }}
     >
       {children}

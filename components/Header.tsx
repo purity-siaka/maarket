@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/CartContext";
+import { ShoppingBag } from "lucide-react";
 
 export default function Header() {
-  const { totalQuantity } = useCart();
+  const { totalQuantity, openCart } = useCart();
 
   return (
     <header className="border-b border-neutral-800 bg-black text-white">
@@ -34,12 +35,13 @@ export default function Header() {
             Contact
           </Link>
 
-          <Link
-            href="/cart"
-            className="rounded-full bg-neutral-900 px-3 py-1 text-yellow-400 hover:bg-neutral-800"
+          <button
+            onClick={openCart}
+            className="flex items-center gap-2 rounded-full bg-neutral-900 px-3 py-1.5 text-yellow-400 hover:bg-neutral-800 transition"
           >
-            Cart ({totalQuantity})
-          </Link>
+            <ShoppingBag size={16} />
+            <span className="font-medium">Cart ({totalQuantity})</span>
+          </button>
         </div>
       </nav>
     </header>
