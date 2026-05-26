@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
 import FadeIn from "@/components/FadeIn";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "MAARKET | Authentic Maasai Beadwork",
@@ -11,6 +12,24 @@ export const metadata: Metadata = {
 };
 
 const heroImage = "/images/home/hero.jpg";
+
+const benefits = [
+  {
+    title: "Authentic craftsmanship",
+    description:
+      "Every piece is made by Maasai artisans using traditional beadwork techniques passed down through generations.",
+  },
+  {
+    title: "Ethical trade promise",
+    description:
+      "Your purchase supports fair pay, community growth, and sustainable sourcing in East Africa.",
+  },
+  {
+    title: "Secure checkout",
+    description:
+      "A smooth shopping experience with a modern checkout flow designed for trust and convenience.",
+  },
+];
 
 export default function HomePage() {
   const featuredProducts = products.slice(0, 4);
@@ -67,6 +86,26 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <FadeIn>
+          <div className="grid gap-6 md:grid-cols-3">
+            {benefits.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6"
+              >
+                <p className="text-sm uppercase tracking-[0.35em] text-yellow-400">
+                  {item.title}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-neutral-300">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <FadeIn>
           <div className="mb-8 flex items-center justify-between gap-4">
             <div>
               <p className="text-sm uppercase tracking-wide text-yellow-400">
@@ -116,6 +155,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <NewsletterSignup />
     </main>
   );
 }

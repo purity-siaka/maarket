@@ -12,7 +12,7 @@ const beadColors = [
     meaning: "Bravery, strength, and unity",
     className: "bg-red-600",
   },
-  {
+  {    
     color: "Blue",
     meaning: "Energy, sky, rain, and blessing",
     className: "bg-blue-600",
