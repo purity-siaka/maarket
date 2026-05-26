@@ -1,11 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FadeIn from "./FadeIn";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [status, setStatus] = useState<"idle" | "subscribed" | "duplicate">("idle");
+  const [knownEmails, setKnownEmails] = useState<string[]>([]);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("maarket-newsletter-subscribers");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          setKnownEmails(parsed.map((value) => String(value).toLowerCase()));
+        }
+      } catch {
+        setKnownEmails([]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (status !== "idle") {
+      const timeout = window.setTimeout(() => setStatus("idle"), 4000);
+      return () => window.clearTimeout(timeout);
+    }
+  }, [status]);
 
   return (
     <FadeIn>
@@ -26,8 +48,21 @@ export default function NewsletterSignup() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              if (!email) return;
-              setSubscribed(true);
+              const nextEmail = email.trim().toLowerCase();
+              if (!nextEmail) return;
+
+              if (knownEmails.includes(nextEmail)) {
+                setStatus("duplicate");
+                return;
+              }
+
+              const updatedEmails = [...knownEmails, nextEmail];
+              setKnownEmails(updatedEmails);
+              window.localStorage.setItem(
+                "maarket-newsletter-subscribers",
+                JSON.stringify(updatedEmails)
+              );
+              setStatus("subscribed");
               setEmail("");
             }}
             className="flex flex-col gap-3 md:w-[420px]"
@@ -39,7 +74,12 @@ export default function NewsletterSignup() {
               id="newsletter-email"
               type="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => {
+                setEmail(event.target.value);
+                if (status !== "idle") {
+                  setStatus("idle");
+                }
+              }}
               placeholder="Enter your email"
               className="w-full rounded-2xl border border-neutral-700 bg-black/70 px-4 py-3 text-white outline-none transition focus:border-yellow-400"
             />
@@ -49,9 +89,14 @@ export default function NewsletterSignup() {
             >
               Subscribe
             </button>
-            {subscribed && (
+            {status === "subscribed" && (
               <p className="text-sm text-emerald-300">
                 Thanks for subscribing — we’ll keep your inbox bright.
+              </p>
+            )}
+            {status === "duplicate" && (
+              <p className="text-sm text-yellow-400">
+                You’re already subscribed with that email.
               </p>
             )}
           </form>
