@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "./CartContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,11 +15,9 @@ export default function CartDrawer() {
     return products.find(p => p.id === id)?.image || "/images/placeholder.jpg";
   };
 
-  return (
-    <AnimatePresence>
-      {isCartOpen && (
-        <>
-          {/* Backdrop */}
+  return isCartOpen ? (
+    <>
+      {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
@@ -129,8 +127,6 @@ export default function CartDrawer() {
               </div>
             )}
           </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
+    </>
+  ) : null;
 }
