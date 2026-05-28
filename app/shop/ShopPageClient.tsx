@@ -30,9 +30,9 @@ export default function ShopPageClient() {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">
-      <h1 className="mb-4 text-4xl font-bold">Shop</h1>
+      <h1 className="mb-4 text-4xl font-bold text-black dark:text-white">Shop</h1>
 
-      <p className="mb-8 max-w-2xl text-neutral-400">
+      <p className="mb-8 max-w-2xl text-neutral-600 dark:text-neutral-400">
         Discover handcrafted Maasai beadwork made with tradition and meaning.
       </p>
 
@@ -40,7 +40,7 @@ export default function ShopPageClient() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search products..."
-        className="mb-6 w-full rounded-xl border border-neutral-700 bg-neutral-900 px-5 py-3 text-white outline-none focus:border-yellow-400"
+        className="mb-6 w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-5 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
       />
 
       <ShopFilters
@@ -53,7 +53,7 @@ export default function ShopPageClient() {
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="group overflow-hidden rounded-2xl bg-neutral-900 transition hover:shadow-xl"
+            className="group overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 transition hover:shadow-xl border border-neutral-200 dark:border-neutral-800"
           >
             <Link href={`/shop/${product.id}`}>
               <div className="relative h-56 w-full overflow-hidden">
@@ -69,29 +69,29 @@ export default function ShopPageClient() {
             <div className="p-4">
               <div className="flex items-center gap-2">
                 <Link href={`/shop/${product.id}`}>
-                  <h2 className="text-lg font-semibold transition hover:text-yellow-400">
+                  <h2 className="text-lg font-semibold text-black dark:text-white transition hover:text-yellow-600 dark:hover:text-yellow-400">
                     {product.name}
                   </h2>
                 </Link>
                 {product.meaning && (
                   <Tooltip content={product.meaning}>
-                    <button className="text-neutral-500 hover:text-yellow-400 transition">
+                    <button className="text-neutral-500 hover:text-yellow-600 dark:hover:text-yellow-400 transition">
                       <Info size={16} />
                     </button>
                   </Tooltip>
                 )}
               </div>
 
-              <p className="mt-1 text-xs uppercase tracking-wide text-neutral-500">
+              <p className="mt-1 text-xs uppercase tracking-wide text-neutral-600 dark:text-neutral-500">
                 {product.category}
               </p>
 
               <div className="mt-4 flex items-center justify-between">
-                <p className="text-lg font-bold">${product.price}</p>
+                <p className="text-lg font-bold text-black dark:text-white">${product.price}</p>
 
                 <Link
                   href={`/shop/${product.id}`}
-                  className="rounded-full bg-yellow-400 px-4 py-2 text-xs font-semibold text-black hover:bg-yellow-300"
+                  className="rounded-full bg-yellow-400 px-4 py-2 text-xs font-semibold text-black hover:bg-yellow-300 transition"
                 >
                   View
                 </Link>

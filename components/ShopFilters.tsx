@@ -20,7 +20,7 @@ export default function ShopFilters({
           className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
             activeCategory === category
               ? "bg-yellow-400 text-black"
-              : "bg-neutral-900 text-white hover:bg-neutral-800"
+              : "bg-neutral-200 dark:bg-neutral-900 text-black dark:text-white hover:bg-neutral-300 dark:hover:bg-neutral-800"
           }`}
         >
           {category}

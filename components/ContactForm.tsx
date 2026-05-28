@@ -26,7 +26,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
       <div className="grid gap-5 md:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="text-sm font-medium text-neutral-400">
+          <label htmlFor="name" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
             Name
           </label>
           <input
@@ -34,12 +34,12 @@ export default function ContactForm() {
             required
             type="text"
             placeholder="Jane Doe"
-            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-yellow-400 focus:bg-neutral-800 transition"
+            className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="text-sm font-medium text-neutral-400">
+          <label htmlFor="email" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
             Email
           </label>
           <input
@@ -47,19 +47,19 @@ export default function ContactForm() {
             required
             type="email"
             placeholder="jane@example.com"
-            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-yellow-400 focus:bg-neutral-800 transition"
+            className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="subject" className="text-sm font-medium text-neutral-400">
+        <label htmlFor="subject" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
           Subject
         </label>
         <select
           id="subject"
           required
-          className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-yellow-400 focus:bg-neutral-800 transition appearance-none"
+          className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors appearance-none"
         >
           <option value="">Select a topic</option>
           <option value="custom">Custom Order Inquiry</option>
@@ -70,7 +70,7 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm font-medium text-neutral-400">
+        <label htmlFor="message" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
           Message
         </label>
         <textarea
@@ -78,7 +78,7 @@ export default function ContactForm() {
           required
           rows={5}
           placeholder="How can we help you?"
-          className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white outline-none focus:border-yellow-400 focus:bg-neutral-800 transition resize-none"
+          className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors resize-none"
         />
       </div>
 

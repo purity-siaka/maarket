@@ -31,16 +31,16 @@ const beadColors = [
 
 export default function CulturePage() {
   return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
-      <p className="text-sm uppercase tracking-[0.3em] text-yellow-400">
+    <main className="mx-auto max-w-6xl px-6 py-16 text-black dark:text-white">
+      <p className="text-sm uppercase tracking-[0.3em] text-yellow-600 dark:text-yellow-400">
         Culture
       </p>
 
-      <h1 className="mt-4 text-4xl font-bold md:text-5xl">
+      <h1 className="mt-4 text-4xl font-bold text-black dark:text-white md:text-5xl">
         Every bead carries meaning.
       </h1>
 
-      <p className="mt-6 max-w-3xl leading-7 text-neutral-300">
+      <p className="mt-6 max-w-3xl leading-7 text-neutral-700 dark:text-neutral-300">
         Maasai beadwork is more than decoration. Colors, patterns, and forms
         communicate identity, beauty, strength, ceremony, community, and
         belonging.
@@ -48,21 +48,21 @@ export default function CulturePage() {
 
       <section className="mt-14 grid gap-6 sm:grid-cols-2">
         {beadColors.map((item) => (
-          <div key={item.color} className="rounded-2xl bg-neutral-900 p-6">
+          <div key={item.color} className="rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6 border border-neutral-300 dark:border-neutral-800 transition-colors">
             <div className="flex items-center gap-4">
               <span
-                className={`h-10 w-10 rounded-full border border-neutral-700 ${item.className}`}
+                className={`h-10 w-10 rounded-full border border-neutral-400 dark:border-neutral-700 ${item.className}`}
               />
               <h2 className="text-xl font-semibold">{item.color}</h2>
             </div>
 
-            <p className="mt-4 text-neutral-300">{item.meaning}</p>
+            <p className="mt-4 text-neutral-700 dark:text-neutral-300">{item.meaning}</p>
           </div>
         ))}      </section>
 
-      <section className="mt-16 rounded-3xl border border-neutral-800 bg-neutral-950 p-8">
+      <section className="mt-16 rounded-3xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 p-8 transition-colors">
         <h2 className="text-2xl font-bold">Respectful storytelling</h2>
-        <p className="mt-4 max-w-3xl leading-7 text-neutral-300">
+        <p className="mt-4 max-w-3xl leading-7 text-neutral-700 dark:text-neutral-300">
           MAARKET highlights the people, meaning, and craft behind Maasai
           beadwork, ensuring every piece is presented with cultural context.
         </p>

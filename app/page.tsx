@@ -42,11 +42,11 @@ export default function HomePage() {
             Maasai beadwork marketplace
           </p>
 
-          <h1 className="mt-4 text-5xl font-bold leading-tight md:text-6xl">
+          <h1 className="mt-4 text-5xl font-bold leading-tight text-black dark:text-white md:text-6xl">
             Beads that carry culture, identity, and pride.
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg text-neutral-300">
+          <p className="mt-6 max-w-xl text-lg text-neutral-700 dark:text-neutral-300">
             MAARKET connects authentic Maasai beadwork with people who value
             culture, craftsmanship, and ethical trade.
           </p>
@@ -61,7 +61,7 @@ export default function HomePage() {
 
             <Link
               href="/culture"
-              className="rounded-full border border-neutral-700 px-6 py-3 font-semibold hover:border-yellow-400"
+              className="rounded-full border border-neutral-400 dark:border-neutral-700 px-6 py-3 font-semibold text-black dark:text-white hover:border-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition"
             >
               Learn the Culture
             </Link>
@@ -69,7 +69,7 @@ export default function HomePage() {
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <div className="overflow-hidden rounded-3xl bg-neutral-900">
+          <div className="overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800">
             <div className="relative h-105">
               <Image
                 src={heroImage}
@@ -90,12 +90,12 @@ export default function HomePage() {
             {benefits.map((item) => (
               <div
                 key={item.title}
-                className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6"
+                className="rounded-3xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 p-6 transition-colors"
               >
-                <p className="text-sm uppercase tracking-[0.35em] text-yellow-400">
+                <p className="text-sm uppercase tracking-[0.35em] text-yellow-600 dark:text-yellow-400">
                   {item.title}
                 </p>
-                <p className="mt-4 text-sm leading-7 text-neutral-300">
+                <p className="mt-4 text-sm leading-7 text-neutral-700 dark:text-neutral-300">
                   {item.description}
                 </p>
               </div>
