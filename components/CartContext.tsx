@@ -109,7 +109,19 @@ export function useCart() {
   const context = useContext(CartContext);
 
   if (!context) {
-    throw new Error("useCart must be used inside CartProvider");
+    // Return default values during prerendering or when provider is not available
+    return {
+      items: [],
+      addItem: () => {},
+      increaseItem: () => {},
+      decreaseItem: () => {},
+      removeItem: () => {},
+      totalQuantity: 0,
+      totalPrice: 0,
+      isCartOpen: false,
+      openCart: () => {},
+      closeCart: () => {},
+    };
   }
 
   return context;
