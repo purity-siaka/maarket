@@ -10,5 +10,10 @@ declare module "framer-motion" {
     span: React.ComponentType<MotionProps & React.HTMLAttributes<HTMLSpanElement>>;
     [key: string]: React.ComponentType<MotionProps>;
   };
+
+  export const AnimatePresence: React.ComponentType<{
+    children?: React.ReactNode;
+    mode?: "sync" | "wait" | "popLayout";
+  }>;
 }
 
