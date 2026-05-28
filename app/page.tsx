@@ -70,7 +70,7 @@ export default function HomePage() {
 
         <FadeIn delay={0.15}>
           <div className="overflow-hidden rounded-3xl bg-neutral-900">
-            <div className="relative h-[420px]">
+            <div className="relative h-105">
               <Image
                 src={heroImage}
                 alt="Maasai beadwork showcase"

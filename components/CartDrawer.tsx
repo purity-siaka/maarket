@@ -51,7 +51,7 @@ export default function CartDrawer() {
                     <Trash2 size={32} className="text-neutral-500" />
                   </div>
                   <h3 className="mb-2 text-lg font-medium">Your cart is empty</h3>
-                  <p className="mb-6 text-neutral-600 dark:text-neutral-400">Looks like you haven't added anything yet.</p>
+                  <p className="mb-6 text-neutral-600 dark:text-neutral-400">Looks like you haven&apos;t added anything yet.</p>
                   <button
                     onClick={closeCart}
                     className="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black hover:bg-yellow-300 transition"
@@ -63,7 +63,7 @@ export default function CartDrawer() {
                 <ul className="space-y-6">
                   {items.map((item) => (
                     <li key={item.id} className="flex gap-4">
-                      <div className="relative h-20 w-20 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800 flex-shrink-0">
+                      <div className="relative h-20 w-20 overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-800 shrink-0">
                         <Image
                           src={getProductImage(item.id)}
                           alt={item.name}
