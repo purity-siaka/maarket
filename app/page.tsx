@@ -54,14 +54,14 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/shop"
-              className="rounded-full bg-yellow-400 px-6 py-3 font-semibold text-black hover:bg-yellow-300"
+              className="rounded-full bg-(--accent) px-6 py-3 font-semibold text-slate-950 hover:bg-(--accent-strong) transition"
             >
               Shop Beadwork
             </Link>
 
             <Link
               href="/culture"
-              className="rounded-full border border-neutral-400 dark:border-neutral-700 px-6 py-3 font-semibold text-black dark:text-white hover:border-yellow-400 hover:text-yellow-600 dark:hover:text-yellow-400 transition"
+              className="rounded-full border border-neutral-400 dark:border-neutral-700 px-6 py-3 font-semibold text-black dark:text-white hover:border-(--accent) hover:text-(--accent) dark:hover:text-(--accent) transition"
             >
               Learn the Culture
             </Link>
@@ -69,7 +69,7 @@ export default function HomePage() {
         </FadeIn>
 
         <FadeIn delay={0.15}>
-          <div className="overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800">
+          <div className="overflow-hidden rounded-3xl theme-card theme-card-glow hero-panel border border-transparent">
             <div className="relative h-105">
               <Image
                 src={heroImage}
@@ -77,7 +77,7 @@ export default function HomePage() {
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="object-cover transition duration-500 hover:scale-105"
               />
             </div>
           </div>
@@ -87,12 +87,12 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-6 py-16">
         <FadeIn>
           <div className="grid gap-6 md:grid-cols-3">
-            {benefits.map((item) => (
+            {benefits.map((item, index) => (
               <div
                 key={item.title}
-                className="rounded-3xl border border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 p-6 transition-colors"
+                className={`theme-card p-6 transition ${index % 2 === 0 ? "theme-card-glow" : ""}`}
               >
-                <p className="text-sm uppercase tracking-[0.35em] text-yellow-600 dark:text-yellow-400">
+                <p className="text-sm uppercase tracking-[0.35em] text-(--accent) dark:text-(--accent)">
                   {item.title}
                 </p>
                 <p className="mt-4 text-sm leading-7 text-neutral-700 dark:text-neutral-300">
@@ -106,9 +106,9 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <FadeIn>
-          <div className="mb-8 flex items-center justify-between gap-4">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-wide text-yellow-400">
+              <p className="text-sm uppercase tracking-wide text-(--accent)">
                 Featured pieces
               </p>
               <h2 className="mt-2 text-3xl font-bold">Handmade beadwork</h2>
@@ -116,7 +116,7 @@ export default function HomePage() {
 
             <Link
               href="/shop"
-              className="rounded-full bg-yellow-400 px-5 py-2 text-sm font-semibold text-black hover:bg-yellow-300"
+              className="rounded-full bg-(--accent) px-5 py-2 text-sm font-semibold text-slate-950 hover:bg-(--accent-strong) transition"
             >
               View all
             </Link>
@@ -126,7 +126,7 @@ export default function HomePage() {
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           {featuredProducts.map((product, index) => (
             <FadeIn key={product.id} delay={index * 0.08}>
-              <div className="overflow-hidden rounded-2xl bg-neutral-900">
+              <div className={`group overflow-hidden rounded-2xl theme-card transition hover:-translate-y-1 ${index % 2 === 0 ? "theme-card-glow" : ""}`}>
                 <Link href={`/shop/${product.id}`}>
                   <div className="relative h-56">
                     <Image
@@ -134,19 +134,19 @@ export default function HomePage() {
                       alt={product.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
-                      className="object-cover transition hover:scale-105"
+                      className="object-cover transition duration-500 group-hover:scale-105"
                     />
                   </div>
                 </Link>
 
                 <div className="p-4">
                   <Link href={`/shop/${product.id}`}>
-                    <h3 className="font-semibold hover:text-yellow-400">
+                    <h3 className="font-semibold transition hover:text-(--accent) dark:hover:text-(--accent)">
                       {product.name}
                     </h3>
                   </Link>
 
-                  <p className="mt-1 text-sm text-neutral-400">
+                  <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
                     ${product.price}
                   </p>
                 </div>

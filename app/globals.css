@@ -1,19 +1,79 @@
 @import "tailwindcss";
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  color: #000;
-  font-family: system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+:root {
+  color-scheme: light;
+  --bg: #f8f2ea;
+  --surface: #ffffff;
+  --surface-soft: #fbf3ea;
+  --border: #e3d0bc;
+  --text: #111827;
+  --muted: #4b5563;
+  --accent: #fbbf24;
+  --accent-strong: #f59e0b;
+  --accent-soft: rgba(251, 191, 36, 0.16);
+  --shadow: 0 22px 50px rgba(15, 23, 42, 0.08);
 }
 
 html.dark,
 html.dark body {
-  background: #000;
-  color: #fff;
+  color-scheme: dark;
+  --bg: #05070f;
+  --surface: #111827;
+  --surface-soft: #111827;
+  --border: #1f2937;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --accent: #facc15;
+  --accent-strong: #f59e0b;
+  --accent-soft: rgba(250, 204, 21, 0.18);
+  --shadow: 0 24px 80px rgba(251, 191, 36, 0.22);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 34%);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.theme-card {
+  border-radius: 1.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.theme-card-glow {
+  box-shadow: 0 24px 80px var(--accent-soft), 0 0 0 1px rgba(251, 191, 36, 0.12);
+}
+
+html.dark .theme-card-glow {
+  box-shadow: 0 24px 90px rgba(250, 204, 21, 0.22), 0 0 0 1px rgba(250, 204, 21, 0.16);
+}
+
+.hero-panel {
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.14), transparent 68%);
 }
 
 * {

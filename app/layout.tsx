@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-white text-black dark:bg-black dark:text-white antialiased transition-colors">
+      <body className="text-black dark:text-white antialiased transition-colors">
         <ThemeProvider>
           <CartProvider>
             <Toaster theme="dark" position="bottom-right" />

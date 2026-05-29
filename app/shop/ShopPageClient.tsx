@@ -50,10 +50,12 @@ export default function ShopPageClient() {
       />
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {filteredProducts.map((product) => (
+        {filteredProducts.map((product, index) => (
           <div
             key={product.id}
-            className="group overflow-hidden rounded-2xl bg-white dark:bg-neutral-900 transition hover:shadow-xl border border-neutral-200 dark:border-neutral-800"
+            className={`group overflow-hidden rounded-2xl theme-card transition hover:-translate-y-1 ${
+              index % 2 === 0 ? "theme-card-glow" : ""
+            }`}
           >
             <Link href={`/shop/${product.id}`}>
               <div className="relative h-56 w-full overflow-hidden">
@@ -69,13 +71,13 @@ export default function ShopPageClient() {
             <div className="p-4">
               <div className="flex items-center gap-2">
                 <Link href={`/shop/${product.id}`}>
-                  <h2 className="text-lg font-semibold text-black dark:text-white transition hover:text-yellow-600 dark:hover:text-yellow-400">
+                  <h2 className="text-lg font-semibold text-black dark:text-white transition hover:text-(--accent) dark:hover:text-(--accent)">
                     {product.name}
                   </h2>
                 </Link>
                 {product.meaning && (
                   <Tooltip content={product.meaning}>
-                    <button className="text-neutral-500 hover:text-yellow-600 dark:hover:text-yellow-400 transition">
+                    <button className="text-neutral-500 hover:text-(--accent) dark:hover:text-(--accent) transition">
                       <Info size={16} />
                     </button>
                   </Tooltip>
@@ -91,7 +93,7 @@ export default function ShopPageClient() {
 
                 <Link
                   href={`/shop/${product.id}`}
-                  className="rounded-full bg-yellow-400 px-4 py-2 text-xs font-semibold text-black hover:bg-yellow-300 transition"
+                  className="rounded-full bg-(--accent) px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-(--accent-strong) transition"
                 >
                   View
                 </Link>
