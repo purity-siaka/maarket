@@ -6,7 +6,6 @@ type Theme = "light" | "dark";
 
 interface ThemeContextType {
   theme: Theme;
-  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -15,15 +14,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Detect and apply system theme preference
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
+    const updateTheme = () => {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const newTheme = prefersDark ? "dark" : "light";
+      setTheme(newTheme);
+      applyTheme(newTheme);
+    };
+
+    updateTheme();
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", updateTheme);
+
     setMounted(true);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateTheme);
+    };
   }, []);
 
   const applyTheme = (newTheme: Theme) => {
@@ -33,13 +43,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       html.classList.remove("dark");
     }
-    localStorage.setItem("theme", newTheme);
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    applyTheme(newTheme);
   };
 
   if (!mounted) {
@@ -47,7 +50,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -57,7 +60,7 @@ export function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) {
     // Return default values during prerendering or when provider is not available
-    return { theme: "dark" as Theme, toggleTheme: () => {} };
+    return { theme: "dark" as Theme };
   }
   return context;
 }

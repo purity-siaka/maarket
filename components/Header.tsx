@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { useCart } from "@/components/CartContext";
-import { useTheme } from "@/components/ThemeContext";
-import { ShoppingBag, Moon, Sun } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 
 export default function Header() {
   const { totalQuantity, openCart } = useCart();
-  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="border-b border-neutral-200/80 dark:border-neutral-800 bg-white/90 dark:bg-slate-950/95 text-black dark:text-white transition-colors backdrop-blur-sm">
@@ -40,14 +38,6 @@ export default function Header() {
           <Link href="/contact" className="hover:text-(--accent) transition">
             Contact
           </Link>
-
-          <button
-            onClick={toggleTheme}
-            className="rounded-full bg-(--surface) p-2 text-(--text) dark:text-(--accent) shadow-sm transition hover:bg-(--surface-soft) dark:hover:bg-slate-900"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
 
           <button
             onClick={openCart}
