@@ -40,7 +40,7 @@ export default function ShopPageClient() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search products..."
-        className="mb-6 w-full rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-5 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
+        className="mb-6 w-full rounded-3xl border border-neutral-300 dark:border-neutral-700 bg-[var(--surface-soft)] dark:bg-[var(--surface)] px-5 py-3 text-black dark:text-white outline-none ring-0 focus:border-(--accent) focus:ring-2 focus:ring-(--accent)/20 transition-all"
       />
 
       <ShopFilters
@@ -53,7 +53,7 @@ export default function ShopPageClient() {
         {filteredProducts.map((product, index) => (
           <div
             key={product.id}
-            className={`group overflow-hidden rounded-2xl theme-card transition hover:-translate-y-1 ${
+            className={`group overflow-hidden rounded-2xl theme-card transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(15,23,42,0.12)] ${
               index % 2 === 0 ? "theme-card-glow" : ""
             }`}
           >
@@ -93,7 +93,7 @@ export default function ShopPageClient() {
 
                 <Link
                   href={`/shop/${product.id}`}
-                  className="rounded-full bg-(--accent) px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-(--accent-strong) transition"
+                  className="rounded-full bg-(--accent) px-4 py-2 text-xs font-semibold text-slate-950 shadow-sm transition hover:bg-(--accent-strong) hover:shadow-lg"
                 >
                   View
                 </Link>

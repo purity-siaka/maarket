@@ -26,12 +26,12 @@ export default function ContactPage() {
       <section className="mt-12 grid gap-6 md:grid-cols-3">
         <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6 border border-neutral-300 dark:border-neutral-800 transition-colors">
           <h2 className="text-xl font-semibold text-black dark:text-white">Email</h2>
-          <p className="mt-3 text-neutral-700 dark:text-neutral-300">puritynsiaka@gmail.com</p>
+          <p className="mt-3 text-neutral-700 dark:text-neutral-300">maarket.info@gmail.com</p>
         </div>
 
         <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6 border border-neutral-300 dark:border-neutral-800 transition-colors">
           <h2 className="text-xl font-semibold text-black dark:text-white">WhatsApp</h2>
-          <p className="mt-3 text-neutral-700 dark:text-neutral-300">+254 757 807 872</p>
+          <p className="mt-3 text-neutral-700 dark:text-neutral-300">+254 712 345 678</p>
         </div>
 
         <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6 border border-neutral-300 dark:border-neutral-800 transition-colors">

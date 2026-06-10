@@ -33,7 +33,7 @@ export default function ContactForm() {
             id="name"
             required
             type="text"
-            placeholder="Jane Doe"
+            placeholder="Full Names"
             className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
           />
         </div>
@@ -46,7 +46,7 @@ export default function ContactForm() {
             id="email"
             required
             type="email"
-            placeholder="jane@example.com"
+            placeholder="email@example.com"
             className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-4 py-3 text-black dark:text-white outline-none focus:border-yellow-400 transition-colors"
           />
         </div>
