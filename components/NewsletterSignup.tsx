@@ -6,21 +6,25 @@ import FadeIn from "./FadeIn";
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "subscribed" | "duplicate">("idle");
-  const [knownEmails, setKnownEmails] = useState<string[]>([]);
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem("maarket-newsletter-subscribers");
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          setKnownEmails(parsed.map((value) => String(value).toLowerCase()));
-        }
-      } catch {
-        setKnownEmails([]);
-      }
+  const [knownEmails, setKnownEmails] = useState<string[]>(() => {
+    if (typeof window === "undefined") {
+      return [];
     }
-  }, []);
+
+    const stored = window.localStorage.getItem("maarket-newsletter-subscribers");
+    if (!stored) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(stored);
+      return Array.isArray(parsed)
+        ? parsed.map((value) => String(value).toLowerCase())
+        : [];
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
     if (status !== "idle") {
