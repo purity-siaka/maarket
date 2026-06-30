@@ -93,7 +93,6 @@ export const products: Product[] = [
   },
 
   {
-    //Edit here for anotha 
     id: "sidan-classic-earrings",
     name: "Sidan Classic Earrings",
     category: "Earrings",
